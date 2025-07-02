@@ -20,7 +20,7 @@ public class MatriculaController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Matricula> criar(@RequestBody MatriculaRequestDTO dto) {
-        Matricula novaMatricula = matriculaService.criarMatricula(dto);
+        Matricula novaMatricula = matriculaService.matricularAluno(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novaMatricula);
     }
 

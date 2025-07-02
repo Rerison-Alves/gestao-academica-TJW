@@ -19,7 +19,7 @@ public class MatriculaService {
     private final AlunoRepository alunoRepository;
     private final TurmaRepository turmaRepository;
 
-    public Matricula criarMatricula(MatriculaRequestDTO dto) {
+    public Matricula matricularAluno(MatriculaRequestDTO dto) {
         Aluno aluno = alunoRepository.findById(dto.getAlunoId())
                 .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
 
