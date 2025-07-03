@@ -1,6 +1,7 @@
 package br.edu.ifce.gestao_academica.professor;
 
 import br.edu.ifce.gestao_academica.turma.Turma;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -35,5 +36,6 @@ public class Professor {
     private String areaAtuacao;
 
     @OneToMany(mappedBy = "professor")
+    @JsonIgnore
     private List<Turma> turmas = new ArrayList<>();
 }

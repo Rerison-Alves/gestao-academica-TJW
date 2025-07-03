@@ -34,7 +34,7 @@ public class TurmaService {
         return turmaRepository.save(turma);
     }
 
-    public Turma atualizar(Integer id, Turma novaTurma) {
+    public Turma atualizar(Integer id, TurmaRequestDTO novaTurma) {
         Turma existente = turmaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Turma não encontrada"));
 
@@ -42,14 +42,14 @@ public class TurmaService {
         existente.setPeriodo(novaTurma.getPeriodo());
         existente.setSemestre(novaTurma.getSemestre());
 
-        if (novaTurma.getDisciplina() != null) {
-            Disciplina novaDisciplina = disciplinaRepository.findById(novaTurma.getDisciplina().getId())
+        if (novaTurma.getDisciplinaId() != null) {
+            Disciplina novaDisciplina = disciplinaRepository.findById(novaTurma.getDisciplinaId())
                 .orElseThrow(() -> new RuntimeException("Disciplina não encontrada"));
             existente.setDisciplina(novaDisciplina);
         }
 
-        if (novaTurma.getProfessor() != null) {
-            Professor novoProfessor = professorRepository.findById(novaTurma.getProfessor().getId())
+        if (novaTurma.getProfessorId()!= null) {
+            Professor novoProfessor = professorRepository.findById(novaTurma.getProfessorId())
                 .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
             existente.setProfessor(novoProfessor);
         }

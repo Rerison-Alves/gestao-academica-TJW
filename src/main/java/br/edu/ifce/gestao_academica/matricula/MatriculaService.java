@@ -47,10 +47,33 @@ public class MatriculaService {
         return matriculaRepository.findById(id);
     }
 
+    public Matricula atualizar(Integer id, MatriculaRequestDTO dto) {
+        Matricula matricula = matriculaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Matrícula não encontrada"));
+
+        Aluno aluno = alunoRepository.findById(dto.getAlunoId())
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
+
+        if (!aluno.getId().equals(dto.getAlunoId())){
+            throw new RuntimeException("Aluno não corresponde ao aluno da matricula");
+        }
+
+        if (dto.getStatus() != null) {
+            Turma novaTurma = turmaRepository.findById(dto.getTurmaId())
+                    .orElseThrow(() -> new RuntimeException("Turma não encontrada"));
+            matricula.setTurma(novaTurma);
+        }
+
+        matricula.setStatus(dto.getStatus());
+
+        return matriculaRepository.save(matricula);
+    }
+
     public void cancelarMatricula(Integer id) {
         Matricula m = matriculaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Matrícula não encontrada"));
         m.setStatus(StatusMatricula.CANCELADA);
         matriculaRepository.save(m);
     }
+
 }

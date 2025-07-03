@@ -1,5 +1,6 @@
 package br.edu.ifce.gestao_academica.disciplina;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ public class DisciplinaController {
 
     private final DisciplinaService disciplinaService;
 
+    @Operation(summary = "Save disciplina", description = "Return saved disciplina")
     @PreAuthorize("hasRole('MANAGER')")
     @PostMapping
     public ResponseEntity<Disciplina> criar(@RequestBody Disciplina disciplina) {
@@ -24,12 +26,14 @@ public class DisciplinaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salva);
     }
 
+    @Operation(summary = "List of disciplinas", description = "Return list of disciplinas")
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping
     public List<Disciplina> listarTodos() {
         return disciplinaService.listarTodos();
     }
 
+    @Operation(summary = "Disciplina by id", description = "Return disciplina")
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{id}")
     public ResponseEntity<Disciplina> buscarPorId(@PathVariable Integer id) {
@@ -38,6 +42,7 @@ public class DisciplinaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Update disciplina", description = "Return updated disciplina")
     @PreAuthorize("hasRole('MANAGER')")
     @PutMapping("/{id}")
     public ResponseEntity<Disciplina> atualizar(@PathVariable Integer id, @RequestBody Disciplina disciplina) {
@@ -49,6 +54,7 @@ public class DisciplinaController {
         }
     }
 
+    @Operation(summary = "Delete disciplina", description = "Return void")
     @PreAuthorize("hasRole('MANAGER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {

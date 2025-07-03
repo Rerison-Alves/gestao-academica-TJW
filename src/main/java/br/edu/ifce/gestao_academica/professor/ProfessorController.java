@@ -1,5 +1,6 @@
 package br.edu.ifce.gestao_academica.professor;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ public class ProfessorController {
 
     private final ProfessorService professorService;
 
+    @Operation(summary = "Save professor", description = "Return saved professor")
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Professor> criar(@RequestBody Professor professor) {
@@ -24,12 +26,14 @@ public class ProfessorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
+    @Operation(summary = "List of professors", description = "Return list of professors")
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public List<Professor> listarTodos() {
         return professorService.listarTodos();
     }
 
+    @Operation(summary = "Professor by id", description = "Return professor")
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<Professor> buscarPorId(@PathVariable Integer id) {
@@ -38,6 +42,7 @@ public class ProfessorController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Update professor", description = "Return updated professor")
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Professor> atualizar(@PathVariable Integer id, @RequestBody Professor professor) {
@@ -49,6 +54,7 @@ public class ProfessorController {
         }
     }
 
+    @Operation(summary = "Delete professor", description = "Return void")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {

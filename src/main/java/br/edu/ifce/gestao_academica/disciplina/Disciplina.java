@@ -1,6 +1,7 @@
 package br.edu.ifce.gestao_academica.disciplina;
 
 import br.edu.ifce.gestao_academica.turma.Turma;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -35,5 +36,6 @@ public class Disciplina {
     private Integer cargaHoraria;
 
     @OneToMany(mappedBy = "disciplina")
+    @JsonIgnore
     private List<Turma> turmas = new ArrayList<>();
 }
