@@ -3,6 +3,7 @@ package br.edu.ifce.gestao_academica.turma;
 import br.edu.ifce.gestao_academica.disciplina.Disciplina;
 import br.edu.ifce.gestao_academica.matricula.Matricula;
 import br.edu.ifce.gestao_academica.professor.Professor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,5 +35,6 @@ public class Turma {
     private Professor professor;
 
     @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Matricula> matriculas = new ArrayList<>();
 }
