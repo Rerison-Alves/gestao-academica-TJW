@@ -31,11 +31,6 @@ public class Aluno {
     private String nome;
 
     @Column(unique = true)
-    @NotBlank(message = "Matrícula ${notblank}")
-    @Size(min = 8, max = 8, message = "Matrícula ${exactsize}")
-    private String matricula;
-
-    @Column(unique = true)
     @NotBlank(message = "Email ${notblank}")
     private String email;
 

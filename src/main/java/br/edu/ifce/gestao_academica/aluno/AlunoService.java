@@ -21,7 +21,6 @@ public class AlunoService {
             .orElseThrow(() -> new RuntimeException("Aluno não encontrado"));
 
         existente.setNome(novoAluno.getNome());
-        existente.setMatricula(novoAluno.getMatricula());
         existente.setEmail(novoAluno.getEmail());
         existente.setTelefone(novoAluno.getTelefone());
         existente.setDataNascimento(novoAluno.getDataNascimento());
