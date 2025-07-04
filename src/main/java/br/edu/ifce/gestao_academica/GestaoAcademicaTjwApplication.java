@@ -43,9 +43,9 @@ public class GestaoAcademicaTjwApplication implements CommandLineRunner {
 
 //		# Povoando o banco
 
-		Aluno aluno1 = new Aluno(null, "Ana Souza", "20250001", "ana@ifce.edu.br", "8599991001", LocalDate.of(2002, 1, 10), new ArrayList<>());
-		Aluno aluno2 = new Aluno(null, "Bruno Lima", "20250002", "bruno@ifce.edu.br", "8599991002", LocalDate.of(2001, 5, 22), new ArrayList<>());
-		Aluno aluno3 = new Aluno(null, "Clara Dias", "20250003", "clara@ifce.edu.br", "8599991003", LocalDate.of(2003, 3, 15), new ArrayList<>());
+		Aluno aluno1 = new Aluno(null, "Ana Souza", "ana@ifce.edu.br", "8599991001", LocalDate.of(2002, 1, 10), new ArrayList<>());
+		Aluno aluno2 = new Aluno(null, "Bruno Lima", "bruno@ifce.edu.br", "8599991002", LocalDate.of(2001, 5, 22), new ArrayList<>());
+		Aluno aluno3 = new Aluno(null, "Clara Dias", "clara@ifce.edu.br", "8599991003", LocalDate.of(2003, 3, 15), new ArrayList<>());
 		aluno1 = alunoService.criar(aluno1);
 		aluno2 = alunoService.criar(aluno2);
 		aluno3 = alunoService.criar(aluno3);
